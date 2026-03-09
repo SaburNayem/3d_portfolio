@@ -31,9 +31,9 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          to_name: "JavaScript Mastery",
+          to_name: "Md Nayem Hossen",
           from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
+          to_email: "mdsabur9991@gmail.com",
           message: form.message,
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
@@ -43,7 +43,7 @@ const Contact = () => {
           setLoading(false);
           showAlert({
             show: true,
-            text: "Thank you for your message 😃",
+            text: "Thanks for your message. I will get back to you soon.",
             type: "success",
           });
 
@@ -55,7 +55,7 @@ const Contact = () => {
               email: "",
               message: "",
             });
-          }, [3000]);
+          }, 3000);
         },
         (error) => {
           setLoading(false);
@@ -64,7 +64,7 @@ const Contact = () => {
 
           showAlert({
             show: true,
-            text: "I didn't receive your message 😢",
+            text: "Message could not be sent. Please try again.",
             type: "danger",
           });
         }
@@ -103,7 +103,7 @@ const Contact = () => {
               type='email'
               name='email'
               className='input'
-              placeholder='John@gmail.com'
+              placeholder='john@gmail.com'
               required
               value={form.email}
               onChange={handleChange}
@@ -117,7 +117,7 @@ const Contact = () => {
               name='message'
               rows='4'
               className='textarea'
-              placeholder='Write your thoughts here...'
+              placeholder='Write your message here...'
               value={form.message}
               onChange={handleChange}
               onFocus={handleFocus}

@@ -11,6 +11,11 @@
 
 body {
   font-family: "Work Sans", sans-serif;
+  background:
+    radial-gradient(circle at 5% 5%, rgba(56, 189, 248, 0.18), transparent 35%),
+    radial-gradient(circle at 90% 15%, rgba(14, 165, 233, 0.16), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+  color: #0f172a;
 }
 
 body:has(.card[data-color="blue"]:hover) {
@@ -35,19 +40,19 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .blue-gradient_text {
-    @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#0284c7] to-[#2563eb] bg-clip-text text-transparent;
   }
 
   .input {
-    @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
+    @apply bg-white/90 border border-slate-200 text-gray-900 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
   }
 
   .textarea {
-    @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
+    @apply block p-2.5 w-full text-sm text-gray-900 bg-white/90 rounded-lg border border-slate-200 focus:ring-sky-500 focus:border-sky-500 mt-2.5 font-normal shadow-card;
   }
 
   .btn {
-    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    @apply text-white bg-gradient-to-r from-sky-500 to-blue-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-transform duration-200 hover:-translate-y-0.5;
   }
 
   .header {
@@ -59,7 +64,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .footer-container {
-    @apply flex flex-wrap gap-7 items-center justify-between;
+    @apply flex flex-wrap gap-7 items-center justify-between text-slate-600;
   }
 
   .info-box {
@@ -71,11 +76,59 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .cta {
-    @apply w-full flex items-center md:flex-row flex-col sm:mt-16 mt-8 gap-7;
+    @apply w-full flex items-center md:flex-row flex-col sm:mt-16 mt-8 gap-7 surface-card;
   }
 
   .cta-text {
     @apply text-black-500 font-extrabold flex-1 text-3xl max-md:text-center;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-md shadow-sky-100/50 backdrop-blur-sm;
+  }
+
+  .nav-shell {
+    @apply flex text-base gap-1.5 font-medium bg-white/80 border border-slate-200 rounded-full p-1;
+  }
+
+  .nav-link {
+    @apply text-slate-600 px-4 py-2 rounded-full transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply text-sky-700 bg-sky-100;
+  }
+
+  .logo-badge {
+    @apply rounded-xl bg-white/90 p-2 border border-slate-200 shadow-sm;
+  }
+
+  .home-panel {
+    @apply absolute z-20 bottom-6 right-6 max-w-xs rounded-2xl border border-white/60 bg-white/75 backdrop-blur-md px-4 py-3 shadow-lg shadow-sky-200/40;
+  }
+
+  .home-panel-kicker {
+    @apply text-xs font-semibold uppercase tracking-wide text-sky-600;
+  }
+
+  .home-panel-title {
+    @apply text-xl font-poppins font-semibold text-slate-900 mt-1;
+  }
+
+  .home-panel-text {
+    @apply text-sm text-slate-600 mt-1;
+  }
+
+  .home-stage-row {
+    @apply flex items-center gap-2 mt-3;
+  }
+
+  .home-stage-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-slate-300 transition-all duration-200;
+  }
+
+  .home-stage-dot-active {
+    @apply bg-sky-500 w-6;
   }
 }
 
@@ -165,7 +218,6 @@ body:has(.card[data-color="green"]:hover) {
   transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
 }
 
-/* Neo Brutalism */
 .neo-brutalism-blue {
   background: #2b77e7;
   position: relative;
@@ -180,4 +232,13 @@ body:has(.card[data-color="green"]:hover) {
   border: #fff;
   box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
     0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+}
+
+@media (max-width: 768px) {
+  .home-panel {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
+  }
 }

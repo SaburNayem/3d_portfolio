@@ -21,8 +21,10 @@ export function Bird() {
   }, []);
 
   useFrame(({ clock, camera }) => {
+    const t = clock.elapsedTime;
     // Update the Y position to simulate bird-like motion using a sine wave
-    birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
+    birdRef.current.position.y = Math.sin(t * 1.4) * 0.28 + 2;
+    birdRef.current.rotation.z = Math.sin(t * 1.6) * 0.08;
 
     // Check if the bird reached a certain endpoint relative to the camera
     if (birdRef.current.position.x > camera.position.x + 10) {
@@ -36,11 +38,11 @@ export function Bird() {
     // Update the X and Z positions based on the direction
     if (birdRef.current.rotation.y === 0) {
       // Moving forward
-      birdRef.current.position.x += 0.01;
+      birdRef.current.position.x += 0.012;
       birdRef.current.position.z -= 0.01;
     } else {
       // Moving backward
-      birdRef.current.position.x -= 0.01;
+      birdRef.current.position.x -= 0.012;
       birdRef.current.position.z += 0.01;
     }
   });
