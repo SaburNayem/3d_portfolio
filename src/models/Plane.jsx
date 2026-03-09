@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
 import planeScene from "../assets/3d/plane.glb";
@@ -14,12 +15,23 @@ export function Plane({ isRotating, ...props }) {
   // Use an effect to control the plane's animation based on 'isRotating'
   // Note: Animation names can be found on the Sketchfab website where the 3D model is hosted.
   useEffect(() => {
-    if (isRotating) {
-      actions["Take 001"].play();
-    } else {
-      actions["Take 001"].stop();
-    }
+    const action = actions["Take 001"];
+    if (!action) return;
+
+    action.play();
+    action.timeScale = isRotating ? 1 : 0.45;
+
+    return () => {
+      action.stop();
+    };
   }, [actions, isRotating]);
+
+  useFrame(({ clock }) => {
+    if (ref.current && !isRotating) {
+      ref.current.position.y = props.position[1] + Math.sin(clock.elapsedTime * 1.4) * 0.18;
+      ref.current.rotation.z = Math.sin(clock.elapsedTime * 0.8) * 0.06;
+    }
+  });
 
   return (
     <mesh {...props} ref={ref}>

@@ -12,10 +12,10 @@ export function Sky({ isRotating }) {
   // Note: Animation names can be found on the Sketchfab website where the 3D model is hosted.
   // It ensures smooth animations by making the rotation frame rate-independent.
   // 'delta' represents the time in seconds since the last frame.
-  useFrame((_, delta) => {
-    if (isRotating) {
-      skyRef.current.rotation.y += 0.25 * delta; // Adjust the rotation speed as needed
-    }
+  useFrame(({ clock }, delta) => {
+    const baseSpeed = isRotating ? 0.25 : 0.06;
+    skyRef.current.rotation.y += baseSpeed * delta;
+    skyRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.2) * 0.02;
   });
 
   return (
