@@ -4,7 +4,7 @@ import {
 } from "react-vertical-timeline-component";
 
 import { CTA } from "../components";
-import { experiences, skills } from "../constants";
+import { experiences, services, skills, stats } from "../constants";
 
 import "react-vertical-timeline-component/style.min.css";
 
@@ -12,52 +12,81 @@ const About = () => {
   return (
     <section className='max-container'>
       <h1 className='head-text'>
-        Hello, I'm{" "}
+        Building products with{" "}
         <span className='blue-gradient_text font-semibold drop-shadow'>
-          {" "}
-          Adrian
-        </span>{" "}
-        👋
+          precision and personality
+        </span>
       </h1>
 
-      <div className='mt-5 flex flex-col gap-3 text-slate-500'>
+      <div className='mt-5 flex flex-col gap-3 text-slate-600'>
         <p>
-          Software Engineer based in Croatia, specializing in technical
-          education through hands-on learning and building applications.
+          I am Md Nayem Hossen, a software engineer focused on performant, production-ready
+          web experiences. I blend product thinking with clean engineering to
+          ship features that are both useful and maintainable.
         </p>
       </div>
 
-      <div className='py-10 flex flex-col'>
+      <div className='grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 mt-10'>
+        {stats.map((item) => (
+          <div key={item.label} className='surface-card'>
+            <p className='text-3xl font-poppins font-semibold text-slate-900'>{item.value}</p>
+            <p className='text-sm text-slate-600 mt-1'>{item.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className='py-14 flex flex-col'>
         <h3 className='subhead-text'>My Skills</h3>
 
-        <div className='mt-16 flex flex-wrap gap-12'>
+        <div className='mt-10 flex flex-wrap gap-8'>
           {skills.map((skill) => (
-            <div className='block-container w-20 h-20' key={skill.name}>
-              <div className='btn-back rounded-xl' />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className='w-1/2 h-1/2 object-contain'
-                />
+            <div className='surface-card min-w-[180px] flex items-center gap-4' key={skill.name}>
+              <div className='block-container w-16 h-16'>
+                <div className='btn-back rounded-xl' />
+                <div className='btn-front rounded-xl flex justify-center items-center'>
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className='w-1/2 h-1/2 object-contain'
+                  />
+                </div>
+              </div>
+              <div>
+                <p className='font-poppins font-semibold text-slate-900'>{skill.name}</p>
+                <p className='text-xs text-slate-500'>{skill.type}</p>
+                <p className='text-xs text-sky-700 mt-1'>{skill.level}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className='py-16'>
-        <h3 className='subhead-text'>Work Experience.</h3>
-        <div className='mt-5 flex flex-col gap-3 text-slate-500'>
+      <div className='pb-8'>
+        <h3 className='subhead-text'>Core Services</h3>
+        <div className='mt-6 grid md:grid-cols-2 gap-4'>
+          {services.map((service) => (
+            <article key={service.title} className='surface-card'>
+              <h4 className='font-poppins text-lg font-semibold text-slate-900'>
+                {service.title}
+              </h4>
+              <p className='text-slate-600 mt-2'>{service.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className='py-12'>
+        <h3 className='subhead-text'>Work Experience</h3>
+        <div className='mt-4 flex flex-col gap-3 text-slate-600'>
           <p>
-            I've worked with all sorts of companies, leveling up my skills and
-            teaming up with smart people. Here's the rundown:
+            Each role strengthened my ability to turn product goals into reliable,
+            user-focused systems.
           </p>
         </div>
 
         <div className='mt-12 flex'>
           <VerticalTimeline>
-            {experiences.map((experience, index) => (
+            {experiences.map((experience) => (
               <VerticalTimelineElement
                 key={experience.company_name}
                 date={experience.date}
@@ -88,13 +117,15 @@ const About = () => {
                   >
                     {experience.company_name}
                   </p>
+                  <p className='text-sm text-slate-600 mt-2'>{experience.summary}</p>
+                  <p className='text-sm font-semibold text-sky-700 mt-2'>{experience.impact}</p>
                 </div>
 
                 <ul className='my-5 list-disc ml-5 space-y-2'>
                   {experience.points.map((point, index) => (
                     <li
                       key={`experience-point-${index}`}
-                      className='text-black-500/50 font-normal pl-1 text-sm'
+                      className='text-black-500/70 font-normal pl-1 text-sm'
                     >
                       {point}
                     </li>

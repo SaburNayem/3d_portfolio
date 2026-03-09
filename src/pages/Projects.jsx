@@ -8,56 +8,72 @@ const Projects = () => {
   return (
     <section className='max-container'>
       <h1 className='head-text'>
-        My{" "}
+        Selected{" "}
         <span className='blue-gradient_text drop-shadow font-semibold'>
           Projects
         </span>
       </h1>
 
-      <p className='text-slate-500 mt-2 leading-relaxed'>
-        I've embarked on numerous projects throughout the years, but these are
-        the ones I hold closest to my heart. Many of them are open-source, so if
-        you come across something that piques your interest, feel free to
-        explore the codebase and contribute your ideas for further enhancements.
-        Your collaboration is highly valued!
+      <p className='text-slate-600 mt-3 leading-relaxed max-w-3xl'>
+        These projects represent product strategy, interface craft, and reliable
+        engineering execution. Each one includes measurable outcomes and clear
+        technical ownership.
       </p>
 
-      <div className='flex flex-wrap my-20 gap-16'>
+      <div className='grid lg:grid-cols-2 grid-cols-1 my-14 gap-8'>
         {projects.map((project) => (
-          <div className='lg:w-[400px] w-full' key={project.name}>
-            <div className='block-container w-12 h-12'>
-              <div className={`btn-back rounded-xl ${project.theme}`} />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
-                <img
-                  src={project.iconUrl}
-                  alt='threads'
-                  className='w-1/2 h-1/2 object-contain'
-                />
+          <article className='surface-card' key={project.name}>
+            <div className='flex items-center gap-4'>
+              <div className='block-container w-12 h-12'>
+                <div className={`btn-back rounded-xl ${project.theme}`} />
+                <div className='btn-front rounded-xl flex justify-center items-center'>
+                  <img
+                    src={project.iconUrl}
+                    alt={project.name}
+                    className='w-1/2 h-1/2 object-contain'
+                  />
+                </div>
+              </div>
+
+              <div>
+                <h4 className='text-xl font-poppins font-semibold text-slate-900'>
+                  {project.name}
+                </h4>
+                <p className='text-xs text-slate-500 mt-1'>
+                  {project.timeline} · {project.outcome}
+                </p>
               </div>
             </div>
 
-            <div className='mt-5 flex flex-col'>
-              <h4 className='text-2xl font-poppins font-semibold'>
-                {project.name}
-              </h4>
-              <p className='mt-2 text-slate-500'>{project.description}</p>
-              <div className='mt-5 flex items-center gap-2 font-poppins'>
-                <Link
-                  to={project.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='font-semibold text-blue-600'
+            <p className='mt-4 text-slate-600'>{project.description}</p>
+
+            <div className='mt-4 flex flex-wrap gap-2'>
+              {project.stack.map((item) => (
+                <span
+                  key={`${project.name}-${item}`}
+                  className='px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700'
                 >
-                  Live Link
-                </Link>
-                <img
-                  src={arrow}
-                  alt='arrow'
-                  className='w-4 h-4 object-contain'
-                />
-              </div>
+                  {item}
+                </span>
+              ))}
             </div>
-          </div>
+
+            <div className='mt-5 flex items-center gap-2 font-poppins'>
+              <Link
+                to={project.link}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='font-semibold text-blue-600'
+              >
+                View repository
+              </Link>
+              <img
+                src={arrow}
+                alt='arrow'
+                className='w-4 h-4 object-contain'
+              />
+            </div>
+          </article>
         ))}
       </div>
 

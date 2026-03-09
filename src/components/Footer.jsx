@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 
 import { socialLinks } from "../constants";
 
@@ -9,12 +9,13 @@ const Footer = () => {
 
       <div className='footer-container'>
         <p>
-          © 2023 <strong>Adrian Hajdin</strong>. All rights reserved.
+          © 2026 <strong>Md Nayem Hossen</strong>. Built with React, Three.js, and
+          Tailwind CSS.
         </p>
 
         <div className='flex gap-3 justify-center items-center'>
           {socialLinks.map((link) => (
-            <Link key={link.name} to={link.link} target='_blank'>
+            <Link key={link.name} to={link.link} target='_blank' rel='noreferrer noopener'>
               <img
                 src={link.iconUrl}
                 alt={link.name}
@@ -29,3 +30,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
